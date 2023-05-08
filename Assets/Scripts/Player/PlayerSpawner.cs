@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
+public class PlayerSpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject _playerPrefab;
-    public void PlayerJoined(PlayerRef player)
+
+    public override void Spawned()
     {
-        if (player == Runner.LocalPlayer)
+        if (!Runner)
         {
-            Runner.Spawn(_playerPrefab, new Vector3(0, 1, 0), Quaternion.identity, player);
+            return;
         }
+        Runner.Spawn(_playerPrefab, new Vector3(0, 1, 0), Quaternion.identity, Runner.LocalPlayer);
     }
 }

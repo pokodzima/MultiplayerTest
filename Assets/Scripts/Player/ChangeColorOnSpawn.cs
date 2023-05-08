@@ -15,7 +15,6 @@ public class ChangeColorOnSpawn : NetworkBehaviour
             return;
         }
 
-
         _playerColor = Color.HSVToRGB(Random01(), Random01(), Random01());
     }
 
