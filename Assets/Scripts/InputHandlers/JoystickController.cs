@@ -2,7 +2,7 @@ using Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Input
+namespace InputHandlers
 {
 
     public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler

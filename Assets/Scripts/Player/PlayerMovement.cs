@@ -1,5 +1,5 @@
 using Fusion;
-using Input;
+using InputHandlers;
 using UnityEngine;
 using Services;
 
