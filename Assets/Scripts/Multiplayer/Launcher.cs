@@ -1,10 +1,12 @@
 using Fusion;
 using UnityEngine;
 using UnityEngine.UI;
+using Services;
+using Multiplayer.ObjectPool;
 
 namespace Multiplayer
 {
-    public class CreateOrJoinRoom : MonoBehaviour
+    public class Launcher : MonoBehaviour
     {
         [SerializeField] private Button _actionButton;
         [SerializeField] private InputField _roomNameField;
@@ -25,7 +27,8 @@ namespace Multiplayer
             {
                 GameMode = GameMode.Shared,
                 SessionName = _roomNameField.text,
-                SceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>()
+                SceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>(),
+                ObjectPool = _runner.gameObject.AddComponent<FusionObjectPoolRoot>()
             });
 
             _runner.SetActiveScene(_gameScene);
