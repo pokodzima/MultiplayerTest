@@ -2,35 +2,38 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ServiceLocator
+namespace Services
 {
-    private static Dictionary<Type, object> services = new Dictionary<Type, object>();
-
-    public static void Register<T>(T service)
+    public static class ServiceLocator
     {
-        Type type = typeof(T);
+        private static Dictionary<Type, object> services = new Dictionary<Type, object>();
 
-        if (services.ContainsKey(type))
+        public static void Register<T>(T service)
         {
-            Debug.LogWarning($"Service of type {type} is already registered. Overwriting...");
-            services[type] = service;
-        }
-        else
-        {
-            services.Add(type, service);
-        }
-    }
+            Type type = typeof(T);
 
-    public static T Resolve<T>()
-    {
-        Type type = typeof(T);
-
-        if (!services.ContainsKey(type))
-        {
-            Debug.LogError($"Service of type {type} is not registered.");
-            return default(T);
+            if (services.ContainsKey(type))
+            {
+                Debug.LogWarning($"Service of type {type} is already registered. Overwriting...");
+                services[type] = service;
+            }
+            else
+            {
+                services.Add(type, service);
+            }
         }
 
-        return (T)services[type];
+        public static T Resolve<T>()
+        {
+            Type type = typeof(T);
+
+            if (!services.ContainsKey(type))
+            {
+                Debug.LogError($"Service of type {type} is not registered.");
+                return default(T);
+            }
+
+            return (T)services[type];
+        }
     }
 }
