@@ -8,7 +8,9 @@ namespace Player
     public class PlayerMovement : SimulationBehaviour
     {
         [SerializeField] private float _moveSpeed;
-        private Vector2 _move;
+        private Vector2 _movement;
+        private Vector2 _input;
+        private float _angle;
         private JoystickController _joystickController;
 
         void Start()
@@ -17,15 +19,23 @@ namespace Player
         }
         public override void FixedUpdateNetwork()
         {
-            if (HasStateAuthority == false)
+            if (!HasStateAuthority)
             {
                 return;
             }
 
-            _move.x = _joystickController.GetHorizontalInput();
-            _move.y = _joystickController.GetVerticalInput();
+            _input.x = _joystickController.GetHorizontalInput();
+            _input.y = _joystickController.GetVerticalInput();
 
-            transform.Translate(_move * (Runner.DeltaTime * _moveSpeed));
+            if (_input.sqrMagnitude != 0)
+            {
+                _angle = Mathf.Atan2(_input.y, _input.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
+            }
+
+            _movement = transform.right * _input.x + -transform.up * _input.y;
+            _movement *= (Runner.DeltaTime * _moveSpeed);
+            transform.Translate(_movement);
         }
     }
 }
