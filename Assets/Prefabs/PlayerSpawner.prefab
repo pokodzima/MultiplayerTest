@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3456019039113347806}
   - component: {fileID: 3456019039113347807}
+  - component: {fileID: 3046474472425228216}
   m_Layer: 0
   m_Name: PlayerSpawner
   m_TagString: Untagged
@@ -44,4 +45,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4fb27b41f932344a19874f034f0854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _playerPrefab: {fileID: 2713276461952604403, guid: 5fb67d7fd29804b4e80bcf06c3911c3d, type: 3}
+--- !u!114 &3046474472425228216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456019039113347776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 703a3046a34a9224c9c7f360486a5bd3
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 3456019039113347807}
+  SimulationBehaviours: []
